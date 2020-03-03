@@ -1,35 +1,89 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  environmentGitPublic: false
-  project: ""
-  provider: gke
-  zone: ""
-gitops: true
+  clusterName: eks-tf-cluster9
+  devEnvApprovers:
+  - dgozalo
+  environmentGitOwner: dgozalo
+  environmentGitPublic: true
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  provider: eks
+  region: us-east-1
+  registry: 105716213112.dkr.ecr.us-east-1.amazonaws.com
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    domain: test-2.cdx-dev.beescloud.com
+    externalDNS: true
+    ignoreLoadBalancer: true
+    namespaceSubDomain: -jx.
+    tls:
+      email: dgozao@cloudbees.com
+      enabled: true
+      production: true
+  key: dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+gitops: true
 ingress:
-  domain: ""
-  externalDNS: false
+  domain: test-2.cdx-dev.beescloud.com
+  externalDNS: true
+  ignoreLoadBalancer: true
+  namespaceSubDomain: -jx.
   tls:
-    email: ""
-    enabled: false
-    production: false
+    email: dgozao@cloudbees.com
+    enabled: true
+    production: true
 kaniko: true
-secretStorage: local
+repository: nexus
+secretStorage: vault
 storage:
+  backup:
+    enabled: false
+    url: ""
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: s3://logs-eks-tf-cluster9-20200302181254059100000005
   reports:
-    enabled: false
-    url: ""
+    enabled: true
+    url: s3://reports-eks-tf-cluster9-20200302181254060400000006
   repository:
-    enabled: false
-    url: ""
+    enabled: true
+    url: s3://repository-eks-tf-cluster9-20200302181254058300000004
+terraform: true
+vault:
+  aws:
+    dynamoDBRegion: us-east-1
+    dynamoDBTable: vault-unseal-eks-tf-cluster9-random19210290120
+    iamUserName: cjxd-vault
+    kmsKeyId: bc76d8cd-8a3e-4f1a-a4c7-2cc0d5ef860d
+    kmsRegion: us-east-1
+    s3Bucket: vault-unseal-eks-tf-cluster9-20200302181254057700000003
+    s3Region: us-east-1
+velero:
+  schedule: ""
+  ttl: ""
 versionStream:
-  ref: "master"
-  url: https://github.com/jenkins-x/jenkins-x-versions.git
+  ref: 2.0.1192+cjxd.7
+  url: https://github.com/cloudbees/cloudbees-jenkins-x-versions.git
 webhook: prow

@@ -1,0 +1,10 @@
+adminUser:
+  password: vault:eks-tf-cluster9/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: dgozalo@cloudbees.com
+  token: vault:eks-tf-cluster9/pipelineUser:token
+  username: dgozalo
+prow:
+  hmacToken: vault:eks-tf-cluster9/prow:hmacToken
