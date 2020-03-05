@@ -1,0 +1,7 @@
+dependencies:
+- host: github.com
+  owner: dgozalo
+  repo: gotest-tf-cluster9
+  url: https://github.com/dgozalo/gotest-tf-cluster9.git
+  version: ""
+  versionURL: ""

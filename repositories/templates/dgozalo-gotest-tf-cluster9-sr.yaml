@@ -1,0 +1,21 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: dgozalo
+    provider: github
+    repository: gotest-tf-cluster9
+  name: dgozalo-gotest-tf-cluster9
+spec:
+  description: Imported application for dgozalo/gotest-tf-cluster9
+  httpCloneURL: https://github.com/dgozalo/gotest-tf-cluster9.git
+  org: dgozalo
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: gotest-tf-cluster9
+  scheduler:
+    kind: ""
+    name: ""
+  url: https://github.com/dgozalo/gotest-tf-cluster9.git
